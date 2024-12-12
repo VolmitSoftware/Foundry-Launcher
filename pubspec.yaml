@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  arcane: ^3.7.3
+  arcane: ^3.7.4
   window_manager: ^0.4.3
   flutter_localizations:
     sdk: flutter

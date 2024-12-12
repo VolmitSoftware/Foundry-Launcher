@@ -20,7 +20,7 @@ class FoundryApp extends StatelessWidget {
         title: 'Foundry',
         home: HOME(),
         theme: ArcaneTheme(
-            scheme: ContrastedColorScheme.fromScheme(ColorSchemes.green),
+            scheme: ContrastedColorScheme.fromScheme(ColorSchemes.gray),
             themeMode: ThemeMode.dark),
       );
 }
