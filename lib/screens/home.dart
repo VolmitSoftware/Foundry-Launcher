@@ -1,5 +1,5 @@
 import 'package:arcane/arcane.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:foundry_launcher/util/imports.dart';
 
 class HOME extends StatelessWidget {
   const HOME({super.key});
@@ -8,8 +8,9 @@ class HOME extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     return FillScreen(
+        header: Platform.isMacOS ? FoundryAppBarMac() : FoundryAppBarWindows(),
         child: Center(
-      child: Text(localizations.appTitle),
-    ));
+          child: Text(localizations.appTitle),
+        ));
   }
 }

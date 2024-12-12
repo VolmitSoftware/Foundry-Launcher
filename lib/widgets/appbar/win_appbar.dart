@@ -1,4 +1,6 @@
 import 'package:arcane/arcane.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:window_manager/window_manager.dart';
 
 class FoundryAppBarWindows extends StatefulWidget {
   const FoundryAppBarWindows({super.key});
@@ -8,8 +10,55 @@ class FoundryAppBarWindows extends StatefulWidget {
 }
 
 class _FoundryAppBarWindowsState extends State<FoundryAppBarWindows> {
+  late bool maximized = windowManager.isMaximized;
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final localizations = AppLocalizations.of(context)!;
+    return GestureDetector(
+      child: Bar(
+        backgroundColor: Colors.black.withOpacity(0.2),
+        title: Text(localizations.appTitle),
+        trailing: [
+          GhostButton(
+            child: Icon(Icons.minus),
+            // density: ButtonDensity.compact,
+            onPressed: () async {
+              await windowManager.minimize();
+            },
+          ),
+          maximized
+              ? GhostButton(
+                  child: Icon(BootstrapIcons.fullscreen),
+                  // density: ButtonDensity.compact,
+                  onPressed: () async {
+                    await windowManager.setMinimumSize;
+                  },
+                )
+              : GhostButton(
+                  child: Icon(BootstrapIcons.fullscreen),
+                  // density: ButtonDensity.compact,
+                  onPressed: () async {
+                    await windowManager.maximize();
+                  },
+                ),
+          GhostButton(
+            child: Icon(BootstrapIcons.fullscreen),
+            // density: ButtonDensity.compact,
+            onPressed: () async {
+              await windowManager.maximize();
+            },
+          ),
+          GhostButton(
+            child: Icon(Icons.close_ionic),
+            // density: ButtonDensity.compact,
+            onPressed: () async {
+              await windowManager.close();
+            },
+          )
+        ],
+      ),
+      onPanStart: (_) => windowManager.startDragging(),
+    );
   }
 }
