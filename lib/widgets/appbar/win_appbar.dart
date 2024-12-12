@@ -10,11 +10,10 @@ class FoundryAppBarWindows extends StatefulWidget {
 }
 
 class _FoundryAppBarWindowsState extends State<FoundryAppBarWindows> {
-  late bool maximized = windowManager.isMaximized;
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    AppLocalizations localizations = AppLocalizations.of(context)!;
     return GestureDetector(
       child: Bar(
         backgroundColor: Colors.black.withOpacity(0.2),
@@ -27,21 +26,6 @@ class _FoundryAppBarWindowsState extends State<FoundryAppBarWindows> {
               await windowManager.minimize();
             },
           ),
-          maximized
-              ? GhostButton(
-                  child: Icon(BootstrapIcons.fullscreen),
-                  // density: ButtonDensity.compact,
-                  onPressed: () async {
-                    await windowManager.setMinimumSize;
-                  },
-                )
-              : GhostButton(
-                  child: Icon(BootstrapIcons.fullscreen),
-                  // density: ButtonDensity.compact,
-                  onPressed: () async {
-                    await windowManager.maximize();
-                  },
-                ),
           GhostButton(
             child: Icon(BootstrapIcons.fullscreen),
             // density: ButtonDensity.compact,

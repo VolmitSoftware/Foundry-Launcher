@@ -6,7 +6,7 @@ class HOME extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    AppLocalizations localizations = AppLocalizations.of(context)!;
     return FillScreen(
         header: Platform.isMacOS ? FoundryAppBarMac() : FoundryAppBarWindows(),
         child: Center(
