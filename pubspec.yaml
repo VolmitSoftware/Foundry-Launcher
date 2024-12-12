@@ -1,7 +1,7 @@
 name: foundry_launcher
 description: "Foundry Launcher"
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ^3.5.2
@@ -14,6 +14,17 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  universal_io: ^2.2.2
+  padded: ^1.0.1
+  flutter_svg: ^2.0.16
+  path_provider: ^2.1.5
+  precision_stopwatch: ^1.0.2
+  device_info_plus: ^11.2.0
+  package_info_plus: ^8.1.2
+  fast_log: ^1.0.7
+  file_picker: ^8.1.5
+  serviced: ^1.0.1
+  flutter_native_splash: ^2.4.3
 
 
 flutter:
