@@ -23,6 +23,8 @@ import 'dart:async';
 import 'package:arcane/arcane.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/foundry.dart';
+import 'package:foundry_launcher/service/preference_service.dart';
+import 'package:foundry_launcher/service/user_service.dart';
 import 'package:foundry_launcher/service/widgets_binding_service.dart';
 import 'package:serviced/serviced.dart';
 import 'package:window_manager/window_manager.dart';

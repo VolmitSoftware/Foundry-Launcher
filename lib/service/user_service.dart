@@ -19,9 +19,7 @@
  */
 
 import 'package:foundry_launcher/data/user_settings.dart';
-import 'package:foundry_launcher/screen/foundary.dart';
 import 'package:foundry_launcher/service/preference_service.dart';
-import 'package:foundry_launcher/util/magic.dart';
 import 'package:serviced/serviced.dart';
 import 'package:fast_log/fast_log.dart';
 
