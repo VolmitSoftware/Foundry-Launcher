@@ -24,39 +24,23 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:serviced/serviced.dart';
 import 'package:fast_log/fast_log.dart';
 
+import '../../util/magic.dart';
+
 BoolOption cfgAppearanceBrightness = BoolOption(
-    name: "Light Theme",
-    icon: Icons.lightbulb,
-    description: "Toggle between light and dark theme",
-    defaultValue: false,
-    reader: () => services().get<UserService>().settings.theme ?? false,
+    name: "Dark Mode",
+    icon: Icons.moon_stars,
+    description: "This allows you to be cool, and have dark mode",
+    defaultValue: UserService().settings.theme,
+    reader: () => services().get<UserService>().settings.theme,
     writer: (value) async {
       try {
-        final userService = services().get<UserService>();
+        UserService userService = services().get<UserService>();
         await userService.updateSettings((settings) =>
             settings.copyWith(theme: value ?? false)
         );
+        updateApp(); // Add this line to trigger app rebuild
       } catch (e, stack) {
         error("Failed to update theme");
-        error(e);
-        error(stack);
-      }
-    });
-
-BoolOption cfgAppearanceContrast = BoolOption(
-    name: "High Contrast",
-    icon: Icons.moon_stars,
-    description: "Enable high contrast mode for better visibility (Oled)",
-    defaultValue: false,
-    reader: () => services().get<UserService>().settings.highContrast,
-    writer: (value) async {
-      try {
-        final userService = services().get<UserService>();
-        await userService.updateSettings((settings) =>
-            settings.copyWith(highContrast: value ?? false)
-        );
-      } catch (e, stack) {
-        error("Failed to update contrast");
         error(e);
         error(stack);
       }
@@ -65,10 +49,9 @@ BoolOption cfgAppearanceContrast = BoolOption(
 OptionGroup cfgAppearance = OptionGroup(
     name: "Appearance",
     icon: Icons.palette,
-    description: "Customize the appearance of the app",
+    description: "Customize the appearance of the ${_cfgPackageInfo.appName}",
     options: [
       cfgAppearanceBrightness,
-      cfgAppearanceContrast,
     ]);
 
 late PackageInfo _cfgPackageInfo;

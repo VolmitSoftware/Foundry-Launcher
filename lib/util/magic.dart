@@ -20,5 +20,5 @@
 
 import 'package:arcane/arcane.dart';
 
-BehaviorSubject<int> _appUpdateStream = BehaviorSubject<int>.seeded(0);
-void updateApp() => _appUpdateStream.add(_appUpdateStream.value + 1);
+BehaviorSubject<int> appUpdateStream = BehaviorSubject<int>.seeded(0);
+void updateApp() => appUpdateStream.add(appUpdateStream.value + 1);

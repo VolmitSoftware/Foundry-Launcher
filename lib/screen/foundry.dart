@@ -18,6 +18,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import 'dart:async';
+
 import 'package:arcane/arcane.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/ProjectManager.dart';
@@ -26,6 +28,7 @@ import 'package:foundry_launcher/service/widgets_binding_service.dart';
 import 'package:serviced/serviced.dart';
 
 import '../util/imports.dart';
+import '../util/magic.dart';
 
 class FoundryApplication extends StatefulWidget {
   const FoundryApplication({super.key});
@@ -45,13 +48,26 @@ class FoundryTheme extends ArcaneTheme {
 }
 
 class FoundryApplicationState extends State<FoundryApplication> {
+  late StreamSubscription _updateSubscription;
+
   @override
   void initState() {
     super.initState();
+    _updateSubscription = appUpdateStream.listen((_) {
+      setState(() {
+        _initializeTheme();
+      });
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeTheme();
     });
     svc<WidgetsBindingService>().dropSplash();
+  }
+
+  @override
+  void dispose() {
+    _updateSubscription.cancel();
+    super.dispose();
   }
 
   void _initializeTheme() {
@@ -61,6 +77,8 @@ class FoundryApplicationState extends State<FoundryApplication> {
       Arcane.app.setTheme(theme);
       verbose(
           "Theme initialized: ${prefsService.settings.theme ? 'light' : 'dark'}");
+      setState(() {});
+      verbose("Theme initialized: ${prefsService.settings.theme ? 'light' : 'dark'}");
     } catch (e, stack) {
       error("Failed to initialize theme");
       error(e);
