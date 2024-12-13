@@ -38,7 +38,7 @@ BoolOption cfgAppearanceBrightness = BoolOption(
         await userService.updateSettings((settings) =>
             settings.copyWith(theme: value ?? false)
         );
-        updateApp(); // Add this line to trigger app rebuild
+        updateApp(); 
       } catch (e, stack) {
         error("Failed to update theme");
         error(e);
@@ -49,7 +49,7 @@ BoolOption cfgAppearanceBrightness = BoolOption(
 OptionGroup cfgAppearance = OptionGroup(
     name: "Appearance",
     icon: Icons.palette,
-    description: "Customize the appearance of the ${_cfgPackageInfo.appName}",
+    description: "Customize the appearance of the ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
     options: [
       cfgAppearanceBrightness,
     ]);
@@ -57,14 +57,14 @@ OptionGroup cfgAppearance = OptionGroup(
 late PackageInfo _cfgPackageInfo;
 
 InfoOption get cfgAboutFoundry => InfoOption(
-    name: _cfgPackageInfo.appName,
+    name: _cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " "),
     icon: Icons.book,
     description: "v${_cfgPackageInfo.version} build ${_cfgPackageInfo.buildNumber}");
 
 OptionGroup cfgAbout = OptionGroup(
     name: "About",
     icon: Icons.info,
-    description: "Information about Foundry",
+    description: "Information about ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
     options: [
       cfgAboutFoundry,
     ]);
