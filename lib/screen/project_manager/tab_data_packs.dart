@@ -21,33 +21,28 @@
 import 'package:arcane/arcane.dart';
 import 'package:fast_log/fast_log.dart';
 
-class TabOne extends StatefulWidget {
-  const TabOne({super.key});
+class TabDataPacks extends StatefulWidget {
+  const TabDataPacks({super.key});
 
   @override
-  State<TabOne> createState() => _TabOneState();
+  State<TabDataPacks> createState() => _TabDataPacksState();
 }
 
-class _TabOneState extends State<TabOne> {
+class _TabDataPacksState extends State<TabDataPacks> {
   @override
   void initState() {
     super.initState();
     info("Initialized");
   }
 
-
   @override
   Widget build(BuildContext context) => SliverScreen(
-
-    sliver:SliverFillRemaining(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.cube, size: 512),
-          ],
+          sliver: SliverFillRemaining(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text("Data Packs Coming Soon")],
+          ),
         ),
-      ),
-    )
-  );
+      ));
 }

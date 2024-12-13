@@ -20,10 +20,10 @@
 
 import 'package:arcane/arcane.dart';
 import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:foundry_launcher/screen/project_manager/tab_one.dart';
+import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
+import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
+import 'package:foundry_launcher/screen/project_manager/tab_resource_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
-
 
 import '../util/magic.dart';
 
@@ -45,15 +45,29 @@ class _FoundryRootState extends State<FoundryProjectManager> {
 
   final List<NavTab> navigationTabs = [
     NavTab(
-      label: "Something",
+      label: "Networks",
+      icon: FontAwesomeIcons.diagramProject,
+      selectedIcon: FontAwesomeIcons.diagramProject,
+      builder: (context) => const OutlinedContainer(
+          borderRadius: BorderRadius.zero, child: TabNetworks()),
+    ),
+    NavTab(
+      label: "Resource Packs",
+      icon: FontAwesomeIcons.diagramProject,
+      selectedIcon: FontAwesomeIcons.diagramProject,
+      builder: (context) => const OutlinedContainer(
+          borderRadius: BorderRadius.zero, child: TabResourcePacks()),
+    ),
+    NavTab(
+      label: "Data Packs",
       icon: Icons.cube,
       selectedIcon: Icons.cube_fill,
       builder: (context) => const OutlinedContainer(
-          borderRadius: BorderRadius.zero, child: TabOne()),
+          borderRadius: BorderRadius.zero, child: TabDataPacks()),
     ),
     NavTab(
       label: "Settings",
-      icon: Icons.cube,
+      icon: FontAwesomeIcons.gear,
       selectedIcon: Icons.cube_fill,
       builder: (context) => const OutlinedContainer(
           borderRadius: BorderRadius.zero, child: UserScreen()),
@@ -71,7 +85,6 @@ class _FoundryRootState extends State<FoundryProjectManager> {
 
   @override
   Widget build(BuildContext context) => NavigationScreen(
-
       type: _getNavigationType(context),
       endSide: false,
       index: index,
@@ -81,12 +94,29 @@ class _FoundryRootState extends State<FoundryProjectManager> {
           padding: 8,
           child: Column(
             children: [
-              ConstrainedBox(
-                  constraints: const BoxConstraints(maxHeight: 100),
-                  child: foundryIcon),
-              Text("Foundry", style: context.theme.typography.h2),
-              Text("Foundry is a thing", style: context.theme.typography.small),
+              Row(
+                children: [
+                  ConstrainedBox(
+                      constraints:
+                          const BoxConstraints(maxHeight: 40, maxWidth: 40),
+                      child: foundryIcon),
+                  Gap(16),
+                  Text("Foundry", style: context.theme.typography.h3),
+                  // Text("Foundry is a thing", style: context.theme.typography.small),
+                ],
+              ),
+              Gap(16),
+              Divider(),
             ],
           )),
       sidebarConstraints: const BoxConstraints(minWidth: 100, maxWidth: 200));
+}
+
+class FooterButton extends StatelessWidget {
+  const FooterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
