@@ -1,5 +1,5 @@
 import 'package:arcane/arcane.dart';
-import 'package:foundry_launcher/screen/root/home.dart';
+import 'package:foundry_launcher/screen/home.dart';
 import 'package:foundry_launcher/service/widgets_binding_service.dart';
 import 'package:serviced/serviced.dart';
 
@@ -58,7 +58,7 @@ class FoundryApplicationState extends State<FoundryApplication> {
           Locale('en'), // Add other supported locales as needed
         ],
         title: 'Foundry Launcher',
-        home: FoundryHome(),
+        home: FoundaryRoot(),
         theme: FoundryTheme(themeMode: ThemeMode.system),
       );
 }
