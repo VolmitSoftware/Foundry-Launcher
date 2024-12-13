@@ -24,6 +24,7 @@ import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_resource_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
+import 'package:foundry_launcher/widget/technical_footer.dart';
 
 import '../util/magic.dart';
 
@@ -84,39 +85,47 @@ class _FoundryRootState extends State<FoundryProjectManager> {
   }
 
   @override
-  Widget build(BuildContext context) => NavigationScreen(
-      type: _getNavigationType(context),
-      endSide: false,
-      index: index,
-      onIndexChanged: (index) => setState(() => this.index = index),
-      tabs: navigationTabs,
-      header: PaddingAll(
-          padding: 8,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  ConstrainedBox(
-                      constraints:
-                          const BoxConstraints(maxHeight: 40, maxWidth: 40),
-                      child: foundryIcon),
-                  Gap(16),
-                  Text("Foundry", style: context.theme.typography.h3),
-                  // Text("Foundry is a thing", style: context.theme.typography.small),
-                ],
-              ),
-              Gap(16),
-              Divider(),
-            ],
-          )),
-      sidebarConstraints: const BoxConstraints(minWidth: 100, maxWidth: 200));
-}
-
-class FooterButton extends StatelessWidget {
-  const FooterButton({super.key});
-
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        Expanded(
+          child: NavigationScreen(
+              type: _getNavigationType(context),
+              endSide: false,
+              index: index,
+              onIndexChanged: (index) => setState(() => this.index = index),
+              tabs: navigationTabs,
+              header: PaddingAll(
+                  padding: 0,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                  maxHeight: 40, maxWidth: 40),
+                              child: foundryIcon),
+                          Gap(16),
+                          Text("Foundry", style: context.theme.typography.h3),
+                          // Text("Foundry is a thing", style: context.theme.typography.small),
+                        ],
+                      ),
+                      Gap(16),
+                      Divider(),
+                      Gap(16),
+                      Row(
+                        children: [
+                          Text("Projects:",
+                              style: context.theme.typography.textMuted)
+                        ],
+                      )
+                    ],
+                  )),
+              sidebarConstraints:
+                  const BoxConstraints(minWidth: 100, maxWidth: 200)),
+        ),
+        FoundryTechnicalFooter()
+      ],
+    );
   }
 }
