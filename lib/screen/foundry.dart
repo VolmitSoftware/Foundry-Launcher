@@ -19,14 +19,13 @@
  */
 
 import 'package:arcane/arcane.dart';
-import 'package:foundry_launcher/screen/home.dart';
+import 'package:fast_log/fast_log.dart';
+import 'package:foundry_launcher/screen/ProjectManager.dart';
 import 'package:foundry_launcher/service/preference_service.dart';
 import 'package:foundry_launcher/service/widgets_binding_service.dart';
 import 'package:serviced/serviced.dart';
-import 'package:fast_log/fast_log.dart';
 
 import '../util/imports.dart';
-
 
 class FoundryApplication extends StatefulWidget {
   const FoundryApplication({super.key});
@@ -60,7 +59,8 @@ class FoundryApplicationState extends State<FoundryApplication> {
       PreferencesService prefsService = services().get<PreferencesService>();
       ArcaneTheme theme = buildTheme(isLight: prefsService.settings.theme);
       Arcane.app.setTheme(theme);
-      verbose("Theme initialized: ${prefsService.settings.theme ? 'light' : 'dark'}");
+      verbose(
+          "Theme initialized: ${prefsService.settings.theme ? 'light' : 'dark'}");
     } catch (e, stack) {
       error("Failed to initialize theme");
       error(e);
@@ -87,7 +87,7 @@ class FoundryApplicationState extends State<FoundryApplication> {
         Locale('en'),
       ],
       title: 'Foundry Launcher',
-      home: FoundaryRoot(),
+      home: FoundryProjectManager(),
       theme: buildTheme(isLight: prefsService.settings.theme),
     );
   }

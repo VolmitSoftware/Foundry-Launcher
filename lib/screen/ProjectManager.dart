@@ -23,19 +23,19 @@ import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
 import 'package:foundry_launcher/screen/root/tab_one.dart';
 import 'package:foundry_launcher/screen/root/user_settings.dart';
 
-class FoundaryRoot extends StatefulWidget {
-  const FoundaryRoot({super.key});
+class FoundryProjectManager extends StatefulWidget {
+  const FoundryProjectManager({super.key});
 
   static void go(BuildContext context) => Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const FoundaryRoot()),
-          (route) => false);
+      MaterialPageRoute(builder: (context) => const FoundryProjectManager()),
+      (route) => false);
 
   @override
-  State<FoundaryRoot> createState() => _FoundaryRootState();
+  State<FoundryProjectManager> createState() => _FoundryRootState();
 }
 
-class _FoundaryRootState extends State<FoundaryRoot> {
+class _FoundryRootState extends State<FoundryProjectManager> {
   int index = 0;
   double kMobileBreakpoint = 1000;
 
@@ -56,8 +56,6 @@ class _FoundaryRootState extends State<FoundaryRoot> {
     ),
   ];
 
-
-
   NavigationType _getNavigationType(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth < kMobileBreakpoint) {
@@ -68,7 +66,7 @@ class _FoundaryRootState extends State<FoundaryRoot> {
   }
 
   @override
-  Widget build(BuildContext context)  => NavigationScreen(
+  Widget build(BuildContext context) => NavigationScreen(
       type: _getNavigationType(context),
       endSide: false,
       index: index,
@@ -82,11 +80,8 @@ class _FoundaryRootState extends State<FoundaryRoot> {
                   constraints: const BoxConstraints(maxHeight: 100),
                   child: Icon(Icons.cube, size: 64)), // lol
               Text("Foundry", style: context.theme.typography.h2),
-              Text("Foundry is a thing",
-                  style: context.theme.typography.small),
+              Text("Foundry is a thing", style: context.theme.typography.small),
             ],
           )),
-      sidebarConstraints:
-      const BoxConstraints(minWidth: 100, maxWidth: 200));
-
+      sidebarConstraints: const BoxConstraints(minWidth: 100, maxWidth: 200));
 }
