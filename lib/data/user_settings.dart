@@ -3,7 +3,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 part 'user_settings.mapper.dart';
 
 @MappableClass()
-class UserSettings {
+class UserSettings with UserSettingsMappable {
   final String? theme;
   final bool highContrast;
 
@@ -11,5 +11,4 @@ class UserSettings {
     this.theme,
     this.highContrast = false,
   });
-
 }
