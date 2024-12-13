@@ -22,6 +22,7 @@ import 'dart:async';
 
 import 'package:arcane/arcane.dart';
 import 'package:fast_log/fast_log.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:foundry_launcher/screen/foundry.dart';
 import 'package:foundry_launcher/service/preference_service.dart';
 import 'package:foundry_launcher/service/user_service.dart';

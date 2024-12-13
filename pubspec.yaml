@@ -24,17 +24,20 @@ dependencies:
   fast_log: ^1.0.7
   file_picker: ^8.1.5
   serviced: ^1.0.1
-  flutter_native_splash: ^2.4.3
   pylon: ^3.1.3
   snackbar: ^1.0.2
   bar: ^1.0.0
   shared_preferences: ^2.3.3
   dart_mappable: ^4.3.0
+  flutter_native_splash: ^2.4.3
+  icons_launcher: ^3.0.0
 
 
 flutter:
   uses-material-design: true
-  generate: true  # This remains to allow generation from ARB files
+  generate: true
+  assets:
+    - assets/icon/icon.svg
   fonts:
     - family: BootstrapIcons
       fonts:
@@ -83,7 +86,30 @@ flutter:
         - asset: "packages/arcane/resources/fonts/GeistMono-UltraLight.otf"
           weight: 200
 
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icon/icon.png
+  color_dark: "#000000"
+  image_dark: assets/icon/icon.png
+  android: false
+  ios: false
+  web: true
+  web_image_mode: center
+  fullscreen: true
+
+icons_launcher:
+  image_path: "assets/icon/icon.png"
+  platforms:
+    macos:
+      enable: true
+    windows:
+
+      enable: true
+
+
 scripts:
+  update_icon_for_app: dart run icons_launcher:create
+  update_splash_for_app: dart run flutter_native_splash:create
   upgrade_packages: |
     flutter pub upgrade --major-versions --precompile
     flutter pub outdated

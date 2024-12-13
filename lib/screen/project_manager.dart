@@ -20,8 +20,11 @@
 
 import 'package:arcane/arcane.dart';
 import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:foundry_launcher/screen/root/tab_one.dart';
 import 'package:foundry_launcher/screen/root/user_settings.dart';
+
+import '../util/magic.dart';
 
 class FoundryProjectManager extends StatefulWidget {
   const FoundryProjectManager({super.key});
@@ -67,6 +70,7 @@ class _FoundryRootState extends State<FoundryProjectManager> {
 
   @override
   Widget build(BuildContext context) => NavigationScreen(
+
       type: _getNavigationType(context),
       endSide: false,
       index: index,
@@ -78,7 +82,7 @@ class _FoundryRootState extends State<FoundryProjectManager> {
             children: [
               ConstrainedBox(
                   constraints: const BoxConstraints(maxHeight: 100),
-                  child: Icon(Icons.cube, size: 64)), // lol
+                  child: foundryIcon),
               Text("Foundry", style: context.theme.typography.h2),
               Text("Foundry is a thing", style: context.theme.typography.small),
             ],

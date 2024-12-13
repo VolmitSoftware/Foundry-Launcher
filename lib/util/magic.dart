@@ -19,6 +19,14 @@
  */
 
 import 'package:arcane/arcane.dart';
+import 'package:flutter_svg/svg.dart';
 
 BehaviorSubject<int> appUpdateStream = BehaviorSubject<int>.seeded(0);
 void updateApp() => appUpdateStream.add(appUpdateStream.value + 1);
+
+const String _assetName = 'assets/icon/icon.svg';
+
+final Widget foundryIcon = SvgPicture.asset(
+  _assetName,
+  semanticsLabel: 'Foundry Logo',
+);
