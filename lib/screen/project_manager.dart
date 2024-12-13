@@ -21,8 +21,9 @@
 import 'package:arcane/arcane.dart';
 import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:foundry_launcher/screen/root/tab_one.dart';
-import 'package:foundry_launcher/screen/root/user_settings.dart';
+import 'package:foundry_launcher/screen/project_manager/tab_one.dart';
+import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
+
 
 import '../util/magic.dart';
 
