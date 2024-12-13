@@ -38,7 +38,7 @@ BoolOption cfgAppearanceBrightness = BoolOption(
         await userService.updateSettings((settings) =>
             settings.copyWith(theme: value ?? false)
         );
-        updateApp(); 
+        updateApp();
       } catch (e, stack) {
         error("Failed to update theme");
         error(e);
