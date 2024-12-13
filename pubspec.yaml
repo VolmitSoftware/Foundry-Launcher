@@ -29,6 +29,8 @@ dependencies:
   snackbar: ^1.0.2
   bar: ^1.0.0
   shared_preferences: ^2.3.3
+  dart_mappable: ^4.3.0
+  build_runner: ^2.4.13
 
 
 flutter:
@@ -81,3 +83,10 @@ flutter:
           weight: 900
         - asset: "packages/arcane/resources/fonts/GeistMono-UltraLight.otf"
           weight: 200
+
+scripts:
+  upgrade_packages: |
+    flutter pub upgrade --major-versions --precompile
+    flutter pub outdated
+  update_json_models:  dart run build_runner build
+  update_json_models_force: dart run build_runner build --delete-conflicting-outputs
