@@ -25,6 +25,10 @@ dependencies:
   file_picker: ^8.1.5
   serviced: ^1.0.1
   flutter_native_splash: ^2.4.3
+  pylon: ^3.1.3
+  snackbar: ^1.0.2
+  bar: ^1.0.0
+  shared_preferences: ^2.3.3
 
 
 flutter:
