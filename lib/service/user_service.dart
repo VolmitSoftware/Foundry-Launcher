@@ -19,6 +19,7 @@
  */
 
 import 'package:foundry_launcher/data/user_settings.dart';
+import 'package:foundry_launcher/screen/foundary.dart';
 import 'package:foundry_launcher/service/preference_service.dart';
 import 'package:foundry_launcher/util/magic.dart';
 import 'package:serviced/serviced.dart';
@@ -53,7 +54,6 @@ class UserService extends StatelessService {
       await prefsService.saveSettings(updatedSettings);
       _settings = updatedSettings;
       verbose("Settings updated through updater function");
-      updateApp();
     } catch (e, stack) {
       error("Failed to update settings");
       error(e);

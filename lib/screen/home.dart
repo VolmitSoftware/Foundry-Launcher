@@ -21,7 +21,7 @@
 import 'package:arcane/arcane.dart';
 import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
 import 'package:foundry_launcher/screen/root/tab_one.dart';
-import 'package:serviced/serviced.dart';
+import 'package:foundry_launcher/screen/root/user_settings.dart';
 
 class FoundaryRoot extends StatefulWidget {
   const FoundaryRoot({super.key});
@@ -45,7 +45,14 @@ class _FoundaryRootState extends State<FoundaryRoot> {
       icon: Icons.cube,
       selectedIcon: Icons.cube_fill,
       builder: (context) => const OutlinedContainer(
-        borderRadius: BorderRadius.zero, child: TabOne()),
+          borderRadius: BorderRadius.zero, child: TabOne()),
+    ),
+    NavTab(
+      label: "Settings",
+      icon: Icons.cube,
+      selectedIcon: Icons.cube_fill,
+      builder: (context) => const OutlinedContainer(
+          borderRadius: BorderRadius.zero, child: UserScreen()),
     ),
   ];
 

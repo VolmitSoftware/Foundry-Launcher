@@ -46,7 +46,7 @@ BoolOption cfgAppearanceBrightness = BoolOption(
 BoolOption cfgAppearanceContrast = BoolOption(
     name: "High Contrast",
     icon: Icons.moon_stars,
-    description: "Enable high contrast mode for better visibility",
+    description: "Enable high contrast mode for better visibility (Oled)",
     defaultValue: false,
     reader: () => services().get<UserService>().settings.highContrast,
     writer: (value) async {

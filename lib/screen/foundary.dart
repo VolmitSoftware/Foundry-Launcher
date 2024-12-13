@@ -49,7 +49,6 @@ class FoundryApplicationState extends State<FoundryApplication> {
   @override
   void initState() {
     super.initState();
-    // Delay the theme setup to ensure Arcane is initialized
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeTheme();
     });
