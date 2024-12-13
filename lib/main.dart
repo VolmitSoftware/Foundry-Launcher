@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:arcane/arcane.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/foundary.dart';
+import 'package:foundry_launcher/service/user_preferences.dart';
 import 'package:foundry_launcher/service/widgets_binding_service.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:serviced/serviced.dart';
@@ -44,4 +45,5 @@ void registerServices() {
   // Core Services here
   services().register<WidgetsBindingService>(() => WidgetsBindingService(),
       lazy: false);
-}
+  services().register<UserPreferencesService>(() => UserPreferencesService(),
+      lazy: false);}
