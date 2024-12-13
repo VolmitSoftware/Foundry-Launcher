@@ -46,15 +46,15 @@ class _FoundryRootState extends State<FoundryProjectManager> {
   final List<NavTab> navigationTabs = [
     NavTab(
       label: "Networks",
-      icon: FontAwesomeIcons.diagramProject,
-      selectedIcon: FontAwesomeIcons.diagramProject,
+      icon: Icons.cube,
+      selectedIcon: Icons.cube_fill,
       builder: (context) => const OutlinedContainer(
           borderRadius: BorderRadius.zero, child: TabNetworks()),
     ),
     NavTab(
       label: "Resource Packs",
-      icon: FontAwesomeIcons.diagramProject,
-      selectedIcon: FontAwesomeIcons.diagramProject,
+      icon: Icons.cube,
+      selectedIcon: Icons.cube_fill,
       builder: (context) => const OutlinedContainer(
           borderRadius: BorderRadius.zero, child: TabResourcePacks()),
     ),
@@ -67,8 +67,8 @@ class _FoundryRootState extends State<FoundryProjectManager> {
     ),
     NavTab(
       label: "Settings",
-      icon: FontAwesomeIcons.gear,
-      selectedIcon: Icons.cube_fill,
+      icon: Icons.gear,
+      selectedIcon: Icons.gear_fill,
       builder: (context) => const OutlinedContainer(
           borderRadius: BorderRadius.zero, child: UserScreen()),
     ),
