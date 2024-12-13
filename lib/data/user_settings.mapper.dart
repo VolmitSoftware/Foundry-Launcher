@@ -1,3 +1,23 @@
+/*
+ * Foundry is a Configuration and Testing tool for Minecraft Servers,
+ * Data and Resource Packs.
+ *
+ * Copyright (c) 2025 Aidan Aeternum LLC (Volmit Software)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -20,9 +40,9 @@ class UserSettingsMapper extends ClassMapperBase<UserSettings> {
   @override
   final String id = 'UserSettings';
 
-  static String? _$theme(UserSettings v) => v.theme;
-  static const Field<UserSettings, String> _f$theme =
-      Field('theme', _$theme, opt: true);
+  static bool _$theme(UserSettings v) => v.theme;
+  static const Field<UserSettings, bool> _f$theme =
+      Field('theme', _$theme, opt: true, def: true);
   static bool _$highContrast(UserSettings v) => v.highContrast;
   static const Field<UserSettings, bool> _f$highContrast =
       Field('highContrast', _$highContrast, opt: true, def: false);
@@ -90,7 +110,7 @@ extension UserSettingsValueCopy<$R, $Out>
 
 abstract class UserSettingsCopyWith<$R, $In extends UserSettings, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? theme, bool? highContrast});
+  $R call({bool? theme, bool? highContrast});
   UserSettingsCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -103,9 +123,8 @@ class _UserSettingsCopyWithImpl<$R, $Out>
   late final ClassMapperBase<UserSettings> $mapper =
       UserSettingsMapper.ensureInitialized();
   @override
-  $R call({Object? theme = $none, bool? highContrast}) =>
-      $apply(FieldCopyWithData({
-        if (theme != $none) #theme: theme,
+  $R call({bool? theme, bool? highContrast}) => $apply(FieldCopyWithData({
+        if (theme != null) #theme: theme,
         if (highContrast != null) #highContrast: highContrast
       }));
   @override

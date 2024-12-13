@@ -18,7 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export 'package:flutter_gen/gen_l10n/app_localizations.dart';
-export 'package:flutter_localizations/flutter_localizations.dart';
-export 'package:foundry_launcher/widget/appbar/macos_appbar.dart';
-export 'package:foundry_launcher/widget/appbar/win_appbar.dart';
+import 'package:arcane/arcane.dart';
+
+BehaviorSubject<int> _appUpdateStream = BehaviorSubject<int>.seeded(0);
+void updateApp() => _appUpdateStream.add(_appUpdateStream.value + 1);
