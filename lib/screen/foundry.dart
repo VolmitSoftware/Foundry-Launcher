@@ -73,7 +73,8 @@ class FoundryApplicationState extends State<FoundryApplication> {
   void _initializeTheme() {
     try {
       PreferencesService prefsService = services().get<PreferencesService>();
-      ArcaneTheme theme = buildTheme(isLight: prefsService.settings.theme);
+      ArcaneTheme theme = buildTheme(
+          isLight: prefsService.settings.theme);
       Arcane.app.setTheme(theme);
       verbose(
           "Theme initialized: ${prefsService.settings.theme ? 'light' : 'dark'}");
@@ -86,8 +87,8 @@ class FoundryApplicationState extends State<FoundryApplication> {
     }
   }
 
-  static ArcaneTheme buildTheme({required bool isLight}) {
-    return FoundryTheme(themeMode: isLight ? ThemeMode.dark : ThemeMode.light);
+  static ArcaneTheme buildTheme({required bool isLight, ContrastedColorScheme? scheme}) {
+    return FoundryTheme(themeMode: isLight ? ThemeMode.dark : ThemeMode.light, scheme: scheme);
   }
 
   @override
@@ -95,7 +96,7 @@ class FoundryApplicationState extends State<FoundryApplication> {
     PreferencesService prefsService = services().get<PreferencesService>();
 
     return ArcaneApp(
-      localizationsDelegates: const [
+    localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -106,7 +107,7 @@ class FoundryApplicationState extends State<FoundryApplication> {
       ],
       title: 'Foundry Launcher',
       home: FoundryProjectManager(),
-      theme: buildTheme(isLight: prefsService.settings.theme),
+      theme: buildTheme(isLight: prefsService.settings.theme, scheme: ContrastedColorScheme.fromScheme(ColorSchemes.orange)),
     );
   }
 }
