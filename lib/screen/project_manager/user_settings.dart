@@ -19,10 +19,10 @@
  */
 
 import 'package:arcane/arcane.dart';
+import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/service/user_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:serviced/serviced.dart';
-import 'package:fast_log/fast_log.dart';
 
 import '../../util/magic.dart';
 
@@ -35,9 +35,8 @@ BoolOption cfgAppearanceBrightness = BoolOption(
     writer: (value) async {
       try {
         UserService userService = services().get<UserService>();
-        await userService.updateSettings((settings) =>
-            settings.copyWith(theme: value ?? false)
-        );
+        await userService.updateSettings(
+            (settings) => settings.copyWith(theme: value ?? false));
         updateApp();
       } catch (e, stack) {
         error("Failed to update theme");
@@ -55,9 +54,8 @@ BoolOption cfgAppearanceContrast = BoolOption(
     writer: (value) async {
       try {
         UserService userService = services().get<UserService>();
-        await userService.updateSettings((settings) =>
-            settings.copyWith(highContrast: value ?? false)
-        );
+        await userService.updateSettings(
+            (settings) => settings.copyWith(highContrast: value ?? false));
         updateApp();
       } catch (e, stack) {
         error("Failed to update theme");
@@ -69,29 +67,33 @@ BoolOption cfgAppearanceContrast = BoolOption(
 OptionGroup cfgAppearance = OptionGroup(
     name: "Appearance",
     icon: Icons.palette,
-    description: "Customize the appearance of the ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
+    description:
+        "Customize the appearance of the ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
     options: [
       cfgAppearanceBrightness,
+      cfgAppearanceContrast,
     ]);
 
 late PackageInfo _cfgPackageInfo;
 
 InfoOption get cfgAboutFoundry => InfoOption(
-    name: _cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " "),
+    name: _cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase
+        .replaceAll("_", " "),
     icon: Icons.book,
-    description: "v${_cfgPackageInfo.version} build ${_cfgPackageInfo.buildNumber}");
+    description:
+        "v${_cfgPackageInfo.version} build ${_cfgPackageInfo.buildNumber}");
 
 OptionGroup cfgAbout = OptionGroup(
     name: "About",
     icon: Icons.info,
-    description: "Information about ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
+    description:
+        "Information about ${_cfgPackageInfo.appName.lowerCamelCaseToUpperSpacedCase.replaceAll("_", " ")}",
     options: [
       cfgAboutFoundry,
     ]);
 
-OptionScreen cfgSettings = OptionScreen(
-    name: "Settings",
-    options: [cfgAppearance, cfgAbout]);
+OptionScreen cfgSettings =
+    OptionScreen(name: "Settings", options: [cfgAppearance, cfgAbout]);
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -113,12 +115,12 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) => FutureBuilder(
-    future: _work,
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
-        return SettingsScreen(options: cfgSettings);
-      }
-      return const Center(child: CircularProgressIndicator());
-    },
-  );
+        future: _work,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SettingsScreen(options: cfgSettings);
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
+      );
 }
