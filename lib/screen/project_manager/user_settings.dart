@@ -46,6 +46,26 @@ BoolOption cfgAppearanceBrightness = BoolOption(
       }
     });
 
+BoolOption cfgAppearanceContrast = BoolOption(
+    name: "High-Contrast Mode",
+    icon: Icons.moon_stars,
+    description: "Toggles the 'UltRa ConTraSt 0l3d' Mode",
+    defaultValue: UserService().settings.highContrast,
+    reader: () => services().get<UserService>().settings.highContrast,
+    writer: (value) async {
+      try {
+        UserService userService = services().get<UserService>();
+        await userService.updateSettings((settings) =>
+            settings.copyWith(highContrast: value ?? false)
+        );
+        updateApp();
+      } catch (e, stack) {
+        error("Failed to update theme");
+        error(e);
+        error(stack);
+      }
+    });
+
 OptionGroup cfgAppearance = OptionGroup(
     name: "Appearance",
     icon: Icons.palette,

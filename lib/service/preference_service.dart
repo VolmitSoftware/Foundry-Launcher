@@ -60,7 +60,7 @@ class PreferencesService extends Service {
   void _createDefaults() {
     _currentSettings = UserSettings(
       theme: false, // false = dark theme
-      highContrast: false,
+      highContrast: false, // false = normal contrast
     );
     saveSettings(_currentSettings!);
     verbose("Created default settings");
