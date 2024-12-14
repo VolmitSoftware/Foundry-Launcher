@@ -7,30 +7,32 @@ environment:
   sdk: ^3.5.2
 
 dependencies:
-  flutter:
-    sdk: flutter
-  arcane: ^3.7.4
-  window_manager: ^0.4.3
-  flutter_localizations:
-    sdk: flutter
-  intl: any
-  universal_io: ^2.2.2
-  padded: ^1.0.1
-  flutter_svg: ^2.0.16
-  path_provider: ^2.1.5
-  precision_stopwatch: ^1.0.2
+  arcane: ^3.7.6
+  bar: ^1.0.0
+  dart_docker: ^0.0.1
+  dart_mappable: ^4.3.0
   device_info_plus: ^11.2.0
-  package_info_plus: ^8.1.2
   fast_log: ^1.0.7
   file_picker: ^8.1.5
-  serviced: ^1.0.1
-  pylon: ^3.1.3
-  snackbar: ^1.0.2
-  bar: ^1.0.0
-  shared_preferences: ^2.3.3
-  dart_mappable: ^4.3.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_native_splash: ^2.4.3
+  flutter_svg: ^2.0.16
   icons_launcher: ^3.0.0
+  intl: any
+  package_info_plus: ^8.1.2
+  padded: ^1.0.1
+  path_provider: ^2.1.5
+  precision_stopwatch: ^1.0.2
+  pylon: ^3.1.3
+  serviced: ^1.0.1
+  shared_preferences: ^2.3.3
+  snackbar: ^1.0.2
+  universal_io: ^2.2.2
+  window_manager: ^0.4.3
+
 
 
 flutter:
