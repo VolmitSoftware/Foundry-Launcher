@@ -49,29 +49,29 @@ class _FoundryRootState extends State<FoundryProjectManager> {
       label: "Networks",
       icon: Icons.cube,
       selectedIcon: Icons.cube_fill,
-      builder: (context) => const OutlinedContainer(
-          borderRadius: BorderRadius.zero, child: TabNetworks()),
+      builder: (context) => Container(
+          child: TabNetworks()),
     ),
     NavTab(
-      label: "Resource Packs",
+      label: "Resource Packs", 
       icon: Icons.cube,
       selectedIcon: Icons.cube_fill,
-      builder: (context) => const OutlinedContainer(
-          borderRadius: BorderRadius.zero, child: TabResourcePacks()),
+      builder: (context) => Container(
+          child: TabResourcePacks()),
     ),
     NavTab(
       label: "Data Packs",
       icon: Icons.cube,
       selectedIcon: Icons.cube_fill,
-      builder: (context) => const OutlinedContainer(
-          borderRadius: BorderRadius.zero, child: TabDataPacks()),
+      builder: (context) => Container(
+          child: TabDataPacks()),
     ),
     NavTab(
       label: "Settings",
       icon: Icons.gear,
       selectedIcon: Icons.gear_fill,
-      builder: (context) => const OutlinedContainer(
-          borderRadius: BorderRadius.zero, child: UserScreen()),
+      builder: (context) => Container(
+          child: UserScreen()),
     ),
   ];
 
