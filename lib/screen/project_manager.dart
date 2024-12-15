@@ -24,7 +24,6 @@ import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_resource_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
-import 'package:foundry_launcher/widget/project_manager/network_appbar.dart';
 
 class FoundryProjectManager extends StatefulWidget {
   const FoundryProjectManager({super.key});
@@ -51,57 +50,51 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
 
   @override
   Widget build(BuildContext context) {
-    return FillScreen(
-      header: ProjectManagerNetworkAppbar(),
-        child: Column(
-      children: [
-        SidebarScreen(
-          fab: Fab(
-            child: const Icon(Icons.plug),
-            onPressed: () {
-              info("Add Network");
-            },
+    return SidebarScreen(
+      fab: Fab(
+        child: const Icon(Icons.plug),
+        onPressed: () {
+          info("Add Network");
+        },
+      ),
+      gutter: false,
+      sidebar: (context) => ArcaneSidebar(
+        children: (context) => [
+          ArcaneSidebarButton(
+            icon: context.isSidebarExpanded
+                ? const Icon(Icons.share_network)
+                : const Icon(Icons.share_network_fill),
+            label: "Networks",
+            selected: selectedIndex == 0,
+            onTap: () => setState(() => selectedIndex = 0),
           ),
-          gutter: false,
-          sidebar: (context) => ArcaneSidebar(
-            children: (context) => [
-              ArcaneSidebarButton(
-                icon: context.isSidebarExpanded
-                    ? const Icon(Icons.share_network)
-                    : const Icon(Icons.share_network_fill),
-                label: "Networks",
-                selected: selectedIndex == 0,
-                onTap: () => setState(() => selectedIndex = 0),
-              ),
-              ArcaneSidebarButton(
-                icon: const Icon(Icons.cube),
-                label: "Resource Packs",
-                selected: selectedIndex == 1,
-                onTap: () => setState(() => selectedIndex = 1),
-              ),
-              ArcaneSidebarButton(
-                icon: const Icon(Icons.cube),
-                label: "Data Packs",
-                selected: selectedIndex == 2,
-                onTap: () => setState(() => selectedIndex = 2),
-              ),
-              ArcaneSidebarButton(
-                icon: const Icon(Icons.gear),
-                label: "Settings",
-                selected: selectedIndex == 3,
-                onTap: () => setState(() => selectedIndex = 3),
-              ),
-            ],
-            footer: (context) => const ArcaneSidebarFooter(
-              content: ArcaneSidebarFooter(),
-            ),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.cube),
+            label: "Resource Packs",
+            selected: selectedIndex == 1,
+            onTap: () => setState(() => selectedIndex = 1),
           ),
-          sliver: SliverFillRemaining(
-            hasScrollBody: false,
-            child: tabs[selectedIndex](context),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.cube),
+            label: "Data Packs",
+            selected: selectedIndex == 2,
+            onTap: () => setState(() => selectedIndex = 2),
           ),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.gear),
+            label: "Settings",
+            selected: selectedIndex == 3,
+            onTap: () => setState(() => selectedIndex = 3),
+          ),
+        ],
+        footer: (context) => const ArcaneSidebarFooter(
+          content: ArcaneSidebarFooter(),
         ),
-      ],
-    ));
+      ),
+      sliver: SliverFillRemaining(
+        hasScrollBody: false,
+        child: tabs[selectedIndex](context),
+      ),
+    );
   }
 }
