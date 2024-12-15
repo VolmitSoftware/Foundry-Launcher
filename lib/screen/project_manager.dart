@@ -19,6 +19,7 @@
  */
 
 import 'package:arcane/arcane.dart';
+import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
@@ -44,34 +45,15 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
   int selectedIndex = 0;
 
   final List<Widget Function(BuildContext)> tabs = [
-    (BuildContext context) => const TabNetworks(),
-    (BuildContext context) => const TabResourcePacks(),
-    (BuildContext context) => const TabDataPacks(),
-    (BuildContext context) => const UserScreen(),
+    (context) => const TabNetworks(),
+    (context) => const TabResourcePacks(),
+    (context) => const TabDataPacks(),
+    (context) => const UserScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return SidebarScreen(
-      header: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            SizedBox(
-              height: 40,
-              width: 40,
-              child: foundryIcon,
-            ),
-            if (context.isSidebarExpanded) ...[
-              const SizedBox(width: 16),
-              Text(
-                "Foundry",
-                style: Theme.of(context).typography.h2,
-              ),
-            ],
-          ],
-        ),
-      ),
       fab: Fab(
         child: const Icon(Icons.plug),
         onPressed: () {
@@ -79,6 +61,7 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
         },
       ),
       gutter: false,
+      header: _buildHeader(context),
       sidebar: (context) => ArcaneSidebar(
         children: (context) => [
           ArcaneSidebarButton(
@@ -106,12 +89,30 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
             onTap: () => setState(() => selectedIndex = 3),
           ),
         ],
-        footer: (context) =>
-            const ArcaneSidebarFooter(content: ArcaneSidebarFooter()),
+        footer: (context) => const ArcaneSidebarFooter(),
       ),
       sliver: SliverFillRemaining(
         hasScrollBody: false,
         child: tabs[selectedIndex](context),
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          SizedBox(
+            height: 40,
+            width: 40,
+            child: foundryIcon,
+          ),
+          if (context.isSidebarExpanded) ...[
+            const SizedBox(width: 16),
+            Text("Foundry", style: context.theme.typography.h3),
+          ],
+        ],
       ),
     );
   }
