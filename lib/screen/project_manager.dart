@@ -20,11 +20,11 @@
 
 import 'package:arcane/arcane.dart';
 import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
+import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_resource_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
-import 'package:foundry_launcher/widget/technical_footer.dart';
 
 import '../util/magic.dart';
 
@@ -32,100 +32,88 @@ class FoundryProjectManager extends StatefulWidget {
   const FoundryProjectManager({super.key});
 
   static void go(BuildContext context) => Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const FoundryProjectManager()),
-      (route) => false);
+        context,
+        MaterialPageRoute(builder: (context) => const FoundryProjectManager()),
+        (route) => false,
+      );
 
   @override
-  State<FoundryProjectManager> createState() => _FoundryRootState();
+  State<FoundryProjectManager> createState() => _FoundryProjectManagerState();
 }
 
-class _FoundryRootState extends State<FoundryProjectManager> {
-  int index = 0;
-  double kMobileBreakpoint = 1000;
+class _FoundryProjectManagerState extends State<FoundryProjectManager> {
+  int selectedIndex = 0;
 
-  final List<NavTab> navigationTabs = [
-    NavTab(
-      label: "Networks",
-      icon: Icons.cube,
-      selectedIcon: Icons.cube_fill,
-      builder: (context) => Container(
-          child: TabNetworks()),
-    ),
-    NavTab(
-      label: "Resource Packs", 
-      icon: Icons.cube,
-      selectedIcon: Icons.cube_fill,
-      builder: (context) => Container(
-          child: TabResourcePacks()),
-    ),
-    NavTab(
-      label: "Data Packs",
-      icon: Icons.cube,
-      selectedIcon: Icons.cube_fill,
-      builder: (context) => Container(
-          child: TabDataPacks()),
-    ),
-    NavTab(
-      label: "Settings",
-      icon: Icons.gear,
-      selectedIcon: Icons.gear_fill,
-      builder: (context) => Container(
-          child: UserScreen()),
-    ),
+  final List<Widget Function(BuildContext)> tabs = [
+    (context) => const TabNetworks(),
+    (context) => const TabResourcePacks(),
+    (context) => const TabDataPacks(),
+    (context) => const UserScreen(),
   ];
-
-  NavigationType _getNavigationType(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    if (screenWidth < kMobileBreakpoint) {
-      return NavigationType.sidebar; // this is the "mobile" version
-    } else {
-      return NavigationType.sidebar;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: NavigationScreen(
-              type: _getNavigationType(context),
-              endSide: false,
-              index: index,
-              onIndexChanged: (index) => setState(() => this.index = index),
-              tabs: navigationTabs,
-              header: PaddingAll(
-                  padding: 0,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                  maxHeight: 40, maxWidth: 40),
-                              child: foundryIcon),
-                          Gap(16),
-                          Text("Foundry", style: context.theme.typography.h3),
-                          // Text("Foundry is a thing", style: context.theme.typography.small),
-                        ],
-                      ),
-                      Gap(16),
-                      Divider(),
-                      Gap(16),
-                      Row(
-                        children: [
-                          Text("Projects:",
-                              style: context.theme.typography.textMuted)
-                        ],
-                      )
-                    ],
-                  )),
-              sidebarConstraints:
-                  const BoxConstraints(minWidth: 100, maxWidth: 200)),
-        ),
-        FoundryTechnicalFooter()
-      ],
+    return SidebarScreen(
+      fab: Fab(
+        child: const Icon(Icons.plug),
+        onPressed: () {
+          info("Add Network");
+        },
+      ),
+      gutter: false,
+      header: _buildHeader(context),
+      sidebar: (context) => ArcaneSidebar(
+        children: (context) => [
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.cube),
+            label: "Networks",
+            selected: selectedIndex == 0,
+            onTap: () => setState(() => selectedIndex = 0),
+          ),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.cube),
+            label: "Resource Packs",
+            selected: selectedIndex == 1,
+            onTap: () => setState(() => selectedIndex = 1),
+          ),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.cube),
+            label: "Data Packs",
+            selected: selectedIndex == 2,
+            onTap: () => setState(() => selectedIndex = 2),
+          ),
+          ArcaneSidebarButton(
+            icon: const Icon(Icons.gear),
+            label: "Settings",
+            selected: selectedIndex == 3,
+            onTap: () => setState(() => selectedIndex = 3),
+          ),
+        ],
+        footer: (context) => const ArcaneSidebarFooter(),
+      ),
+      sliver: SliverFillRemaining(
+        hasScrollBody: false,
+        child: tabs[selectedIndex](context),
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          SizedBox(
+            height: 40,
+            width: 40,
+            child: foundryIcon,
+          ),
+          if (context.isSidebarExpanded) ...[
+            const SizedBox(width: 16),
+            Text("Foundry", style: context.theme.typography.h3),
+          ],
+        ],
+      ),
     );
   }
 }
