@@ -19,14 +19,11 @@
  */
 
 import 'package:arcane/arcane.dart';
-import 'package:arcane/generated/arcane_shadcn/shadcn_flutter_extension.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_data_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_networks.dart';
 import 'package:foundry_launcher/screen/project_manager/tab_resource_packs.dart';
 import 'package:foundry_launcher/screen/project_manager/user_settings.dart';
-
-import '../util/magic.dart';
 
 class FoundryProjectManager extends StatefulWidget {
   const FoundryProjectManager({super.key});
@@ -61,11 +58,12 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
         },
       ),
       gutter: false,
-      header: _buildHeader(context),
       sidebar: (context) => ArcaneSidebar(
         children: (context) => [
           ArcaneSidebarButton(
-            icon: const Icon(Icons.cube),
+            icon: context.isSidebarExpanded
+                ? const Icon(Icons.share_network)
+                : const Icon(Icons.share_network_fill),
             label: "Networks",
             selected: selectedIndex == 0,
             onTap: () => setState(() => selectedIndex = 0),
@@ -89,30 +87,13 @@ class _FoundryProjectManagerState extends State<FoundryProjectManager> {
             onTap: () => setState(() => selectedIndex = 3),
           ),
         ],
-        footer: (context) => const ArcaneSidebarFooter(),
+        footer: (context) => const ArcaneSidebarFooter(
+          content: ArcaneSidebarFooter(),
+        ),
       ),
       sliver: SliverFillRemaining(
         hasScrollBody: false,
         child: tabs[selectedIndex](context),
-      ),
-    );
-  }
-
-  Widget _buildHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          SizedBox(
-            height: 40,
-            width: 40,
-            child: foundryIcon,
-          ),
-          if (context.isSidebarExpanded) ...[
-            const SizedBox(width: 16),
-            Text("Foundry", style: context.theme.typography.h3),
-          ],
-        ],
       ),
     );
   }
