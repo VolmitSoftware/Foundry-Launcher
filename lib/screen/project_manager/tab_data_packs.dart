@@ -37,7 +37,14 @@ class _TabDataPacksState extends State<TabDataPacks> {
 
   @override
   Widget build(BuildContext context) => SliverScreen(
-          sliver: SliverFillRemaining(
+      header: Bar(
+        trailing: [
+          // something here
+        ],
+        titleText: "Data Packs",
+        subtitleText: "Create, Manage and Share Data Packs",
+      ),
+      sliver: SliverFillRemaining(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

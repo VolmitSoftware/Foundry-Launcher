@@ -37,7 +37,14 @@ class _TabNetworksState extends State<TabNetworks> {
 
   @override
   Widget build(BuildContext context) => SliverScreen(
-          sliver: SliverFillRemaining(
+      header: Bar(
+        trailing: [
+          // something here
+        ],
+        titleText: "Networks",
+        subtitleText: "Create, Manage and Share Networks",
+      ),
+      sliver: SliverFillRemaining(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

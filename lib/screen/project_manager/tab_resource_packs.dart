@@ -37,7 +37,14 @@ class _TabResourcePacksState extends State<TabResourcePacks> {
 
   @override
   Widget build(BuildContext context) => SliverScreen(
-          sliver: SliverFillRemaining(
+      header: Bar(
+        trailing: [
+          // something here
+        ],
+        titleText: "Resource Packs",
+        subtitleText: "Create, Manage and Share Resource Packs",
+      ),
+      sliver: SliverFillRemaining(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

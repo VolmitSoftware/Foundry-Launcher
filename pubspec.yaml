@@ -7,7 +7,7 @@ environment:
   sdk: ^3.5.2
 
 dependencies:
-  arcane: ^3.7.6
+  arcane: ^3.9.0
   bar: ^1.0.0
   dart_docker: ^0.0.1
   dart_mappable: ^4.3.0
