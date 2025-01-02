@@ -7,18 +7,18 @@ environment:
   sdk: ^3.5.2
 
 dependencies:
-  arcane: ^3.9.0
+  arcane: ^3.10.12
   bar: ^1.0.0
   dart_docker: ^0.0.1
   dart_mappable: ^4.3.0
   device_info_plus: ^11.2.0
   fast_log: ^1.0.7
-  file_picker: ^8.1.5
+  file_picker: ^8.1.7
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_native_splash: ^2.4.3
+  flutter_native_splash: ^2.4.4
   flutter_svg: ^2.0.16
   icons_launcher: ^3.0.0
   intl: any
@@ -26,13 +26,16 @@ dependencies:
   padded: ^1.0.1
   path_provider: ^2.1.5
   precision_stopwatch: ^1.0.2
-  pylon: ^3.1.3
+  pylon: ^3.1.9
   serviced: ^1.0.1
-  shared_preferences: ^2.3.3
+  shared_preferences: ^2.3.4
   snackbar: ^1.0.2
   universal_io: ^2.2.2
   window_manager: ^0.4.3
 
+dev_dependencies:
+  build_runner: ^2.4.14
+  dart_mappable_builder: ^4.3.0
 
 
 flutter:
@@ -117,6 +120,4 @@ scripts:
     flutter pub outdated
   update_json_models:  dart run build_runner build
   update_json_models_force: dart run build_runner build --delete-conflicting-outputs
-dev_dependencies:
-  build_runner: ^2.4.13
-  dart_mappable_builder: ^4.3.0
+
